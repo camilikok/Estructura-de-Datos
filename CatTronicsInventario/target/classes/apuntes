@@ -1,0 +1,20 @@
+Estructuras de datos integradas:
+Estas son estructuras listas para usar que vienen con Java.
+Puedes usarlos inmediatamente sin escribir código adicional.
+Algunos ejemplos incluyen:
+Matrices: listas simples de elementos
+ArrayList: una lista que puede crecer o disminuir
+LinkedList: Una cadena de elementos conectados
+HashMap: almacena pares de información (como una palabra y su significado)
+Estructuras de datos personalizadas:
+
+Estas son estructuras que tú mismo creas.
+Los haces cuando los incorporados no se adaptan a tus necesidades
+Algunos ejemplos incluyen:
+Pilas: como una pila de platos
+Colas: como una fila de personas esperando
+Árboles: como un árbol genealógico
+Gráficos: como un mapa de ciudades y carreteras
+
+
+COMPLEJIDAD TEMPORAL
