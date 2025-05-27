@@ -1,0 +1,30 @@
+class RutasVuelos {
+    Map<String, List<Par>> vuelos = new HashMap<>();
+
+    class Par {
+        String destino;
+        int costo;
+        Par(String destino, int costo) {
+            this.destino = destino;
+            this.costo = costo;
+        }
+    }
+
+    void agregarAeropuerto(String nombre) {
+        vuelos.putIfAbsent(nombre, new ArrayList<>());
+    }
+
+    void agregarVuelo(String origen, String destino, int costo) {
+        vuelos.get(origen).add(new Par(destino, costo)); // dirigido
+    }
+
+    void mostrarRutas() {
+        for (String origen : vuelos.keySet()) {
+            System.out.print(origen + " → ");
+            for (Par vuelo : vuelos.get(origen)) {
+                System.out.print(vuelo.destino + " ($" + vuelo.costo + ") ");
+            }
+            System.out.println();
+        }
+    }
+}
