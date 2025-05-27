@@ -1,0 +1,37 @@
+import java.util.*;
+
+class RedSocial {
+    Map<String, List<String>> grafo = new HashMap<>();
+
+    void agregarUsuario(String nombre) {
+        grafo.putIfAbsent(nombre, new ArrayList<>());
+    }
+
+    void agregarAmistad(String a, String b) {
+        grafo.get(a).add(b);
+        grafo.get(b).add(a); // No dirigido
+    }
+
+    int contarAmigos(String usuario) {
+        return grafo.get(usuario).size();
+    }
+
+    boolean hayCamino(String origen, String destino) {
+        Set<String> visitado = new HashSet<>();
+        Queue<String> cola = new LinkedList<>();
+        cola.add(origen);
+        visitado.add(origen);
+
+        while (!cola.isEmpty()) {
+            String actual = cola.poll();
+            if (actual.equals(destino)) return true;
+            for (String vecino : grafo.get(actual)) {
+                if (!visitado.contains(vecino)) {
+                    visitado.add(vecino);
+                    cola.add(vecino);
+                }
+            }
+        }
+        return false;
+    }
+}
