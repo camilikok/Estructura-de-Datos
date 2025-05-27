@@ -1,0 +1,31 @@
+class MapaCiudades {
+    Map<String, List<Par>> mapa = new HashMap<>();
+
+    class Par {
+        String ciudad;
+        int distancia;
+        Par(String ciudad, int distancia) {
+            this.ciudad = ciudad;
+            this.distancia = distancia;
+        }
+    }
+
+    void agregarCiudad(String nombre) {
+        mapa.putIfAbsent(nombre, new ArrayList<>());
+    }
+
+    void conectar(String a, String b, int distancia) {
+        mapa.get(a).add(new Par(b, distancia));
+        mapa.get(b).add(new Par(a, distancia));
+    }
+
+    void mostrarMapa() {
+        for (String ciudad : mapa.keySet()) {
+            System.out.print(ciudad + " → ");
+            for (Par destino : mapa.get(ciudad)) {
+                System.out.print(destino.ciudad + "(" + destino.distancia + ") ");
+            }
+            System.out.println();
+        }
+    }
+}
