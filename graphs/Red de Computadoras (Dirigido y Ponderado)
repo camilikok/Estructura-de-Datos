@@ -1,0 +1,42 @@
+import java.util.*;
+
+class RedComputo {
+    class Par {
+        int nodo, peso;
+        Par(int nodo, int peso) { this.nodo = nodo; this.peso = peso; }
+    }
+
+    List<List<Par>> grafo;
+
+    RedComputo(int N) {
+        grafo = new ArrayList<>();
+        for (int i = 0; i < N; i++)
+            grafo.add(new ArrayList<>());
+    }
+
+    void conectar(int a, int b, int latencia) {
+        grafo.get(a).add(new Par(b, latencia)); // Dirigido
+    }
+
+    void dijkstra(int origen) {
+        int[] dist = new int[grafo.size()];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[origen] = 0;
+
+        PriorityQueue<Par> pq = new PriorityQueue<>(Comparator.comparingInt(p -> p.peso));
+        pq.add(new Par(origen, 0));
+
+        while (!pq.isEmpty()) {
+            Par actual = pq.poll();
+            for (Par vecino : grafo.get(actual.nodo)) {
+                int nuevaDist = dist[actual.nodo] + vecino.peso;
+                if (nuevaDist < dist[vecino.nodo]) {
+                    dist[vecino.nodo] = nuevaDist;
+                    pq.add(new Par(vecino.nodo, nuevaDist));
+                }
+            }
+        }
+
+        System.out.println("Latencias desde " + origen + ": " + Arrays.toString(dist));
+    }
+}
